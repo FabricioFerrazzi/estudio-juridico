@@ -1,193 +1,898 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Estudio Jurídico Ferrazzi Lefevre & Asoc.</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dr. Fabricio Ferrazzi | Abogado - Estudio Jurídico en Corrientes</title>
+<meta name="description" content="Estudio jurídico del Dr. Fabricio Ferrazzi en Corrientes. Especializado en Derecho Civil, Familia, Previsional, Inmobiliario y Administrativo. Primera consulta sin cargo.">
 
-        body {
-           font-family: 'Segoe UI', Arial, sans-serif;
-    background-image: url('justicia.webp');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    color: #333;
-    line-height: 1.6;
-    min-height: 100vh;
-        }
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 
-        .container {
-           max-width: 900px;
-    margin: 30px auto;
-    background-color: rgba(255, 255, 255, 0.92);
-    padding: 40px;
-    border-radius: 12px;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
-        }
+<style>
+/* =====================================================
+   1. VARIABLES Y BASE
+   ===================================================== */
+:root {
+  --azul-marino: #0B1B3A;
+  --azul-medio: #1A2D4F;
+  --azul-oscuro: #060F1F;
+  --gris-plata: #9AA3AD;
+  --gris-oscuro: #2A2F38;
+  --blanco: #FFFFFF;
+  --blanco-humo: #F5F6F8;
+  --dorado: #C9A961;
+  --dorado-hover: #D9BC7A;
+  --font-titulo: 'Cormorant Garamond', serif;
+  --font-cuerpo: 'Inter', system-ui, sans-serif;
+}
 
-        header {
-            text-align: center;
-            margin-bottom: 30px;
-            padding-bottom: 20px;
-            border-bottom: 2px solid #1a365d;
-        }
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
 
-        header img {
-            width: 120px;
-            margin-bottom: 15px;
-        }
+body {
+  font-family: var(--font-cuerpo);
+  background-color: var(--azul-marino);
+  color: var(--gris-plata);
+  line-height: 1.65;
+  overflow-x: hidden;
+}
 
-        h1 {
-            color: #1a365d;
-            font-size: 1.8rem;
-            margin-bottom: 5px;
-        }
+h1, h2, h3 { font-family: var(--font-titulo); color: var(--blanco); font-weight: 600; }
+a { color: inherit; text-decoration: none; }
+img { max-width: 100%; display: block; }
 
-        .subtitulo {
-            color: #555;
-            font-size: 1.1rem;
-        }
+.contenedor { max-width: 1200px; margin: 0 auto; padding: 0 6%; }
 
-        h2 {
-            color: #1a365d;
-            margin: 30px 0 15px 0;
-            font-size: 1.4rem;
-        }
+.boton {
+  display: inline-block;
+  padding: 15px 32px;
+  border-radius: 2px;
+  font-weight: 500;
+  font-size: 13px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+  border: 1px solid transparent;
+  cursor: pointer;
+}
 
-        .ramas {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 15px;
-            margin-bottom: 30px;
-        }
+.boton-dorado { background-color: var(--dorado); color: var(--azul-marino); }
+.boton-dorado:hover { background-color: var(--dorado-hover); transform: translateY(-2px); }
 
-        details {
-            background-color: #f0f4f8;
-            padding: 12px 16px;
-            border-radius: 8px;
-            border: 1px solid #d0d7de;
-        }
+.boton-outline { border-color: var(--dorado); color: var(--dorado); }
+.boton-outline:hover { background-color: rgba(201,169,97,0.1); }
 
-        summary {
-            font-weight: 600;
-            color: #1a365d;
-            cursor: pointer;
-        }
+.reveal { opacity: 0; transform: translateY(26px); transition: opacity 0.8s ease, transform 0.8s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
 
-        details p {
-            margin-top: 10px;
-            font-size: 0.95rem;
-            color: #444;
-        }
+.etiqueta {
+  display: inline-block;
+  font-size: 12px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--dorado);
+  margin-bottom: 20px;
+}
 
-        .contacto {
-            background-color: #1a365d;
-            color: white;
-            padding: 25px;
-            border-radius: 10px;
-            margin-top: 20px;
-        }
+/* =====================================================
+   2. HEADER
+   ===================================================== */
+header {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 1000;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 18px 6%;
+  background-color: rgba(11,27,58,0.6);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid rgba(201,169,97,0.15);
+  transition: background-color 0.35s ease, padding 0.35s ease;
+}
 
-        .contacto h2 {
-            color: white;
-            margin-top: 0;
-        }
+header.header-solido {
+  background-color: rgba(6,15,31,0.98);
+  padding: 12px 6%;
+}
 
-        .contacto a {
-            color: #90cdf4;
-        }
+.logo-header {
+  font-family: var(--font-titulo);
+  font-size: 24px;
+  color: var(--blanco);
+  line-height: 1.1;
+}
+.logo-header span { display: block; font-size: 11px; letter-spacing: 2px; color: var(--dorado); font-family: var(--font-cuerpo); font-weight: 400; text-transform: uppercase; margin-top: 4px; }
 
-        form {
-            margin-top: 15px;
-        }
+nav ul { display: flex; gap: 32px; list-style: none; }
+nav a { font-size: 12px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--blanco); position: relative; }
+nav a::after { content: ''; position: absolute; left: 0; bottom: -6px; width: 0; height: 1px; background-color: var(--dorado); transition: width 0.25s ease; }
+nav a:hover::after { width: 100%; }
 
-        label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: 500;
-        }
+.nav-toggle { display: none; background: none; border: none; color: var(--blanco); font-size: 26px; cursor: pointer; }
 
-        input, textarea {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 15px;
-            border: 1px solid #ccc;
-            border-radius: 6px;
-            font-size: 1rem;
-        }
+@media (max-width: 900px) {
+  nav ul {
+    position: fixed; top: 75px; right: 0;
+    background-color: var(--azul-marino);
+    flex-direction: column; gap: 0; width: 240px;
+    transform: translateX(110%);
+    transition: transform 0.3s ease;
+    padding: 10px 0;
+    border-left: 1px solid rgba(201,169,97,0.3);
+  }
+  nav ul.abierto { transform: translateX(0); }
+  nav ul li { padding: 16px 26px; border-bottom: 1px solid rgba(255,255,255,0.06); }
+  .nav-toggle { display: block; }
+  header .boton { display: none; }
+}
 
-        button {
-            background-color: #2b6cb0;
-            color: white;
-            border: none;
-            padding: 12px 25px;
-            border-radius: 6px;
-            font-size: 1rem;
-            cursor: pointer;
-        }
+/* =====================================================
+   3. HERO
+   ===================================================== */
+.hero {
+  min-height: 100vh;
+  display: flex; align-items: center;
+  padding: 140px 6% 80px;
+  position: relative;
+  background-image:
+    linear-gradient(rgba(11,27,58,0.75), rgba(11,27,58,0.85)),
+    url('hero-fondo.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
 
-        button:hover {
-            background-color: #2c5282;
-        }
-    </style>
+.hero-contenido { max-width: 900px; position: relative; z-index: 2; }
+
+.hero h1 {
+  font-size: clamp(48px, 7vw, 88px);
+  line-height: 1.05;
+  margin-bottom: 24px;
+  letter-spacing: -1px;
+}
+.hero h1 em { color: var(--dorado); font-style: italic; }
+
+.hero .frase {
+  font-size: clamp(17px, 2vw, 22px);
+  color: var(--blanco);
+  opacity: 0.9;
+  max-width: 700px;
+  margin-bottom: 40px;
+}
+
+.hero-botones { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 60px; }
+
+.hero-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+  max-width: 700px;
+  padding-top: 40px;
+  border-top: 1px solid rgba(201,169,97,0.3);
+}
+
+.stat-numero {
+  font-family: var(--font-titulo);
+  font-size: clamp(36px, 5vw, 56px);
+  color: var(--dorado);
+  line-height: 1;
+  margin-bottom: 8px;
+}
+.stat-texto { font-size: 13px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--gris-plata); }
+
+@media (max-width: 600px) {
+  .hero-stats { grid-template-columns: 1fr; gap: 24px; }
+}
+
+/* =====================================================
+   4. SECCIÓN GENÉRICA
+   ===================================================== */
+section { padding: 120px 0; }
+.seccion-clara { background-color: var(--blanco-humo); }
+.seccion-oscura { background-color: var(--azul-marino); }
+
+.seccion-clara h2, .seccion-clara h3 { color: var(--azul-marino); }
+.seccion-clara p { color: var(--gris-oscuro); }
+
+.seccion-header { text-align: center; max-width: 700px; margin: 0 auto 70px; }
+.seccion-header h2 { font-size: clamp(32px, 4vw, 52px); margin-bottom: 16px; letter-spacing: -0.5px; }
+.seccion-header p { font-size: 17px; opacity: 0.85; }
+
+/* =====================================================
+   5. ÁREAS DE PRÁCTICA
+   ===================================================== */
+.areas-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+}
+
+.area-card {
+  background-color: var(--blanco);
+  border: 1px solid rgba(11,27,58,0.08);
+  border-radius: 4px;
+  padding: 40px 32px;
+  transition: all 0.4s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.area-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 50px rgba(11,27,58,0.15);
+  border-color: var(--dorado);
+}
+
+.area-numero {
+  font-family: var(--font-titulo);
+  font-size: 42px;
+  color: var(--dorado);
+  opacity: 0.5;
+  line-height: 1;
+  margin-bottom: 20px;
+}
+
+.area-card h3 {
+  font-size: 26px;
+  margin-bottom: 16px;
+  letter-spacing: -0.3px;
+}
+
+.area-card p {
+  font-size: 15px;
+  line-height: 1.7;
+  margin: 0;
+}
+
+/* =====================================================
+   6. PROCESO
+   ===================================================== */
+.proceso-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 30px;
+  position: relative;
+}
+
+.proceso-paso {
+  text-align: center;
+  position: relative;
+}
+
+.paso-numero {
+  width: 70px; height: 70px;
+  margin: 0 auto 24px;
+  border: 1px solid var(--dorado);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-titulo);
+  font-size: 28px;
+  color: var(--dorado);
+  background-color: var(--azul-marino);
+  position: relative;
+  z-index: 2;
+}
+
+.proceso-paso h3 {
+  font-size: 22px;
+  margin-bottom: 14px;
+}
+
+.proceso-paso p {
+  font-size: 14.5px;
+  color: var(--gris-plata);
+  line-height: 1.7;
+}
+
+@media (max-width: 900px) {
+  .proceso-grid { grid-template-columns: 1fr 1fr; gap: 40px; }
+}
+@media (max-width: 560px) {
+  .proceso-grid { grid-template-columns: 1fr; }
+}
+
+/* =====================================================
+   7. SOBRE MÍ
+   ===================================================== */
+.sobre-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  gap: 70px;
+  align-items: center;
+}
+
+  .sobre-foto {
+  width: 100%;
+  max-width: 380px;
+  aspect-ratio: 1 / 1;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 3px solid var(--dorado);
+  box-shadow: 0 20px 60px rgba(11,27,58,0.4);
+  margin: 0 auto;
+}
+
+.sobre-foto img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 15%;
+}
+.sobre-texto h2 { font-size: clamp(32px, 4vw, 48px); margin-bottom: 24px; }
+.sobre-texto p { font-size: 16.5px; line-height: 1.75; margin-bottom: 20px; }
+.sobre-texto p strong { color: var(--dorado); font-weight: 600; }
+
+.formacion {
+  margin-top: 30px;
+  padding-top: 30px;
+  border-top: 1px solid rgba(201,169,97,0.2);
+}
+
+.formacion-item {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.formacion-anio {
+  font-family: var(--font-titulo);
+  font-size: 18px;
+  color: var(--dorado);
+  min-width: 60px;
+  font-weight: 600;
+}
+
+.formacion-titulo {
+  color: var(--blanco);
+  font-weight: 600;
+  font-size: 15px;
+  margin-bottom: 4px;
+}
+
+.formacion-lugar {
+  color: var(--gris-plata);
+  font-size: 13.5px;
+}
+
+@media (max-width: 860px) {
+  .sobre-grid { grid-template-columns: 1fr; gap: 40px; }
+  .sobre-foto { max-width: 320px; margin: 0 auto; }
+}
+
+/* =====================================================
+   8. CONTACTO
+   ===================================================== */
+.contacto-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 60px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.contacto-dato {
+  display: flex;
+  gap: 18px;
+  margin-bottom: 28px;
+  align-items: flex-start;
+}
+
+.contacto-icono {
+  width: 44px; height: 44px;
+  border: 1px solid var(--dorado);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.contacto-icono svg { width: 18px; height: 18px; fill: var(--dorado); }
+
+.contacto-dato strong {
+  display: block;
+  color: var(--blanco);
+  font-size: 14px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+.contacto-dato p { color: var(--gris-plata); font-size: 15px; margin: 0; }
+.contacto-dato a { color: var(--gris-plata); transition: color 0.25s ease; }
+.contacto-dato a:hover { color: var(--dorado); }
+
+.formulario {
+  background-color: var(--azul-medio);
+  border: 1px solid rgba(201,169,97,0.2);
+  border-radius: 4px;
+  padding: 40px;
+}
+
+.formulario .campo { margin-bottom: 20px; }
+
+.formulario label {
+  display: block;
+  font-size: 12px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--dorado);
+  margin-bottom: 8px;
+}
+
+.formulario input,
+.formulario select,
+.formulario textarea {
+  width: 100%;
+  padding: 14px 16px;
+  background-color: var(--azul-marino);
+  border: 1px solid rgba(154,163,173,0.3);
+  border-radius: 2px;
+  color: var(--blanco);
+  font-family: var(--font-cuerpo);
+  font-size: 15px;
+  transition: border-color 0.3s ease;
+}
+
+.formulario input:focus,
+.formulario select:focus,
+.formulario textarea:focus {
+  outline: none;
+  border-color: var(--dorado);
+}
+
+.formulario textarea { resize: vertical; min-height: 120px; }
+
+.formulario button {
+  width: 100%;
+  padding: 16px;
+  background-color: var(--dorado);
+  color: var(--azul-marino);
+  border: none;
+  border-radius: 2px;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: var(--font-cuerpo);
+}
+.formulario button:hover { background-color: var(--dorado-hover); }
+
+.formulario .nota {
+  text-align: center;
+  font-size: 12px;
+  color: var(--gris-plata);
+  margin-top: 16px;
+  opacity: 0.8;
+}
+
+@media (max-width: 860px) {
+  .contacto-grid { grid-template-columns: 1fr; gap: 50px; }
+  .formulario { padding: 30px 24px; }
+}
+
+/* =====================================================
+   9. FOOTER
+   ===================================================== */
+footer {
+  background-color: var(--azul-oscuro);
+  padding: 60px 6% 30px;
+  border-top: 1px solid rgba(201,169,97,0.15);
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 50px;
+  max-width: 1200px;
+  margin: 0 auto 40px;
+}
+
+.footer-col h4 {
+  font-family: var(--font-cuerpo);
+  font-size: 12px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--dorado);
+  margin-bottom: 18px;
+  font-weight: 600;
+}
+
+.footer-col p, .footer-col a {
+  color: var(--gris-plata);
+  font-size: 14px;
+  margin-bottom: 10px;
+  display: block;
+  transition: color 0.25s ease;
+}
+.footer-col a:hover { color: var(--dorado); }
+
+.footer-logo {
+  font-family: var(--font-titulo);
+  font-size: 24px;
+  color: var(--blanco);
+  margin-bottom: 8px;
+}
+.footer-matricula {
+  font-size: 12px;
+  letter-spacing: 1.5px;
+  color: var(--dorado);
+  text-transform: uppercase;
+}
+
+.footer-bottom {
+  text-align: center;
+  padding-top: 30px;
+  border-top: 1px solid rgba(154,163,173,0.15);
+  font-size: 13px;
+  color: var(--gris-plata);
+  opacity: 0.7;
+}
+.footer-credito a { color: #00d4ff; font-weight: 500; }
+.footer-credito a:hover { text-shadow: 0 0 10px rgba(0,212,255,0.8); }
+
+@media (max-width: 760px) {
+  .footer-grid { grid-template-columns: 1fr; gap: 30px; text-align: center; }
+}
+
+/* =====================================================
+   10. WHATSAPP FLOTANTE
+   ===================================================== */
+.whatsapp-flotante {
+  position: fixed; bottom: 26px; right: 26px; z-index: 999;
+  background-color: #25D366; width: 58px; height: 58px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+  transition: transform 0.25s ease;
+}
+.whatsapp-flotante:hover { transform: scale(1.08); }
+.whatsapp-flotante svg { width: 30px; height: 30px; fill: white; }
+</style>
 </head>
 <body>
 
-    <div class="container">
-        <header>
-            <h1>Estudio Jurídico Ferrazzi Lefevre & Asoc.</h1>
-            <p class="subtitulo">Asesoramiento legal profesional</p>
-        </header>
+<!-- HEADER -->
+<header id="header">
+  <a href="#inicio" class="logo-header">
+    Dr. Fabricio Ferrazzi
+    <span>Abogado · Mat. 10615</span>
+  </a>
+  <button class="nav-toggle" id="navToggle" aria-label="Abrir menú">☰</button>
+  <nav>
+    <ul id="navMenu">
+      <li><a href="#areas">Áreas de práctica</a></li>
+      <li><a href="#proceso">El proceso</a></li>
+      <li><a href="#sobre-mi">El estudio</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+    </ul>
+  </nav>
+  <a href="#contacto" class="boton boton-dorado">Consulta inicial</a>
+</header>
 
-        <h2>Áreas de práctica</h2>
-
-        <div class="ramas">
-            <details>
-                <summary>Previsional</summary>
-                <p>Asesoramiento y gestión de jubilaciones, pensiones, retiros y todo lo relacionado con la seguridad social.</p>
-            </details>
-
-            <details>
-                <summary>Sucesiones</summary>
-                <p>Trámites sucesorios, declaratorias de herederos, partición de bienes y planificación sucesoria.</p>
-            </details>
-
-            <details>
-                <summary>Prescripciones</summary>
-                <p>Reclamos por prescripción adquisitiva y defensa en procesos de prescripción.</p>
-            </details>
-
-            <details>
-                <summary>Amparos de Salud</summary>
-                <p>Acciones de amparo para garantizar el acceso a tratamientos médicos, medicamentos y prestaciones de salud.</p>
-            </details>
-        </div>
-
-        <div class="contacto">
-            <h2>Contacto / Consultas</h2>
-            <p>Email: <a href="mailto:fabricioferrazzi@yahoo.com.ar">fabricioferrazzi@yahoo.com.ar</a></p>
-
-            <form action="mailto:fabricioferrazzi@yahoo.com.ar" method="POST" enctype="text/plain">
-                <label for="nombre">Nombre:</label>
-                <input type="text" id="nombre" name="Nombre" required>
-
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="Email" required>
-
-                <label for="mensaje">Consulta:</label>
-                <textarea id="mensaje" name="Consulta" rows="5" required></textarea>
-
-                <button type="submit">Enviar consulta</button>
-            </form>
-        </div>
+<!-- HERO -->
+<section class="hero" id="inicio">
+  <div class="hero-contenido">
+    <span class="etiqueta reveal">Estudio Jurídico · Corrientes</span>
+    <h1 class="reveal">Soluciones legales con <em>precisión</em> y compromiso</h1>
+    <p class="frase reveal">Asesoramiento jurídico integral para personas y empresas. Más de 15 años de experiencia resolviendo casos complejos con resultados concretos.</p>
+    <div class="hero-botones reveal">
+      <a href="#contacto" class="boton boton-dorado">Consulta inicial sin cargo</a>
+      <a href="#areas" class="boton boton-outline">Ver áreas de práctica</a>
     </div>
+
+    <div class="hero-stats reveal">
+      <div>
+        <div class="stat-numero">15+</div>
+        <div class="stat-texto">Años de experiencia</div>
+      </div>
+      <div>
+        <div class="stat-numero">500+</div>
+        <div class="stat-texto">Casos resueltos</div>
+      </div>
+      <div>
+        <div class="stat-numero">98%</div>
+        <div class="stat-texto">Clientes satisfechos</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ÁREAS DE PRÁCTICA -->
+<section class="seccion-clara" id="areas">
+  <div class="contenedor">
+    <div class="seccion-header reveal">
+      <span class="etiqueta" style="color: var(--dorado);">Especialidades</span>
+      <h2>Áreas de práctica</h2>
+      <p>Representación legal especializada en las ramas del derecho más demandadas, con un compromiso real con cada caso.</p>
+    </div>
+
+    <div class="areas-grid">
+
+      <div class="area-card reveal">
+        <div class="area-numero">01</div>
+        <h3>Derecho Civil</h3>
+        <p>Sucesiones, prescripciones, daños y perjuicios, responsabilidad civil y accidentes de tránsito.</p>
+      </div>
+
+      <div class="area-card reveal">
+        <div class="area-numero">02</div>
+        <h3>Derecho de Familia</h3>
+        <p>Divorcios, alimentos, tenencia y régimen de visitas. Acompañamiento en cada etapa del proceso.</p>
+      </div>
+
+      <div class="area-card reveal">
+        <div class="area-numero">03</div>
+        <h3>Derecho Previsional</h3>
+        <p>Reajuste de haberes, amparos previsionales, jubilaciones y pensiones. Defensa de tus derechos.</p>
+      </div>
+
+      <div class="area-card reveal">
+        <div class="area-numero">04</div>
+        <h3>Derecho Inmobiliario</h3>
+        <p>Compraventa de inmuebles, alquileres, desalojos, derechos reales y asesoramiento para proyectos de loteo.</p>
+      </div>
+
+      <div class="area-card reveal">
+        <div class="area-numero">05</div>
+        <h3>Derecho Administrativo</h3>
+        <p>Defensa en sumarios administrativos y asesoramiento integral a empleados públicos.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- PROCESO -->
+<section class="seccion-oscura" id="proceso">
+  <div class="contenedor">
+    <div class="seccion-header reveal">
+      <span class="etiqueta">¿Cómo trabajamos?</span>
+      <h2>El proceso</h2>
+      <p>Un método claro y transparente, para que sepas en todo momento en qué etapa está tu caso.</p>
+    </div>
+
+    <div class="proceso-grid">
+
+      <div class="proceso-paso reveal">
+        <div class="paso-numero">I</div>
+        <h3>Consulta inicial</h3>
+        <p>Primera reunión sin cargo para evaluar su caso y determinar la mejor estrategia legal.</p>
+      </div>
+
+      <div class="proceso-paso reveal">
+        <div class="paso-numero">II</div>
+        <h3>Diagnóstico jurídico</h3>
+        <p>Análisis exhaustivo de la situación, documentación y alternativas disponibles.</p>
+      </div>
+
+      <div class="proceso-paso reveal">
+        <div class="paso-numero">III</div>
+        <h3>Propuesta y honorarios</h3>
+        <p>Presentamos un plan de acción claro con honorarios transparentes y sin sorpresas.</p>
+      </div>
+
+      <div class="proceso-paso reveal">
+        <div class="paso-numero">IV</div>
+        <h3>Seguimiento continuo</h3>
+        <p>Acompañamiento en cada etapa del proceso con comunicación permanente.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- SOBRE MÍ -->
+<section class="seccion-oscura" id="sobre-mi" style="background-color: var(--azul-medio);">
+  <div class="contenedor sobre-grid">
+    <div class="sobre-foto reveal">
+      <img src="foto-ferrazzi.jpg" alt="Dr. Fabricio Ferrazzi">
+    </div>
+    <div class="sobre-texto reveal">
+      <span class="etiqueta">El Estudio</span>
+      <h2>Rigor jurídico al servicio de <em style="color: var(--dorado); font-style: italic;">sus intereses</em></h2>
+      <p>Soy <strong>Fabricio Ferrazzi</strong>, abogado egresado de la Universidad Nacional del Nordeste (UNNE), con especialización en Derecho Administrativo y más de 15 años de ejercicio profesional.</p>
+      <p>Fundé este estudio con una premisa clara: cada cliente merece atención personalizada, comunicación transparente y resultados reales. No prometemos lo que no podemos cumplir.</p>
+
+      <div class="formacion">
+        <div class="formacion-item">
+          <div class="formacion-anio">UNNE</div>
+          <div>
+            <div class="formacion-titulo">Abogacía</div>
+            <div class="formacion-lugar">Universidad Nacional del Nordeste</div>
+          </div>
+        </div>
+        <div class="formacion-item">
+          <div class="formacion-anio">UNCAUS</div>
+          <div>
+            <div class="formacion-titulo">Especialización en Derecho Administrativo</div>
+            <div class="formacion-lugar">Universidad Nacional del Chaco Austral</div>
+          </div>
+        </div>
+        <div class="formacion-item">
+          <div class="formacion-anio">UC</div>
+          <div>
+            <div class="formacion-titulo">Diplomatura en Derecho Administrativo Sancionador</div>
+            <div class="formacion-lugar">Universidad del Aconcagua</div>
+          </div>
+        </div>
+        <div class="formacion-item">
+          <div class="formacion-anio">UNNE</div>
+          <div>
+            <div class="formacion-titulo">Diplomatura en Derecho Procesal Penal</div>
+            <div class="formacion-lugar">Universidad Nacional del Nordeste</div>
+          </div>
+        </div>
+        <div class="formacion-item">
+          <div class="formacion-anio">IANCA</div>
+          <div>
+            <div class="formacion-titulo">Mediador</div>
+            <div class="formacion-lugar">Instituto Argentino de Negociación, Conciliación y Arbitraje</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACTO -->
+<section class="seccion-oscura" id="contacto">
+  <div class="contenedor">
+    <div class="seccion-header reveal">
+      <span class="etiqueta">Contacto</span>
+      <h2>Consultanos sin compromiso</h2>
+      <p>La primera consulta es confidencial y sin cargo. Es el primer paso para entender su situación y evaluar cómo podemos ayudarlo.</p>
+    </div>
+
+    <div class="contacto-grid">
+
+      <div class="reveal">
+        <div class="contacto-dato">
+          <div class="contacto-icono">
+            <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 010-5 2.5 2.5 0 010 5z"/></svg>
+          </div>
+          <div>
+            <strong>Estudio</strong>
+            <p>Agustín P. Justo N° 2524<br>Corrientes Capital, Argentina</p>
+          </div>
+        </div>
+
+        <div class="contacto-dato">
+          <div class="contacto-icono">
+            <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+          </div>
+          <div>
+            <strong>WhatsApp</strong>
+            <p><a href="https://wa.me/543795068130" target="_blank">+54 9 3795 068130</a></p>
+          </div>
+        </div>
+
+        <div class="contacto-dato">
+          <div class="contacto-icono">
+            <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+          </div>
+          <div>
+            <strong>Email</strong>
+            <p><a href="mailto:fabricioferrazzi@yahoo.com.ar">fabricioferrazzi@yahoo.com.ar</a></p>
+          </div>
+        </div>
+
+        <div class="contacto-dato">
+          <div class="contacto-icono">
+            <svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>
+          </div>
+          <div>
+            <strong>Horarios</strong>
+            <p>Lunes a Viernes · 9:00 a 19:00 hs</p>
+          </div>
+        </div>
+      </div>
+
+      <form class="formulario reveal" action="https://formspree.io/f/mdkeazd" method="POST">
+        <div class="campo">
+          <label for="nombre">Nombre completo</label>
+          <input type="text" id="telefono" name="telefono" placeholder="+54 9 3795 000000">
+        </div>
+        <div class="campo">
+          <label for="area">Área legal</label>
+          <select id="area" name="area" required>
+            <option value="">Seleccione un área</option>
+            <option>Derecho Civil</option>
+            <option>Derecho de Familia</option>
+            <option>Derecho Previsional</option>
+            <option>Derecho Inmobiliario</option>
+            <option>Derecho Administrativo</option>
+            <option>Otra consulta</option>
+          </select>
+        </div>
+
+        <div class="campo">
+          <label for="mensaje">Descripción del caso</label>
+          <textarea id="mensaje" name="mensaje" rows="4" required placeholder="Describa brevemente su situación..."></textarea>
+        </div>
+
+        <button type="submit">Enviar consulta</button>
+        <p class="nota">Toda la información es tratada con absoluta confidencialidad.</p>
+      </form>
+
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-col">
+      <div class="footer-logo">Dr. Fabricio Ferrazzi</div>
+      <div class="footer-matricula">Abogado · Mat. 10615 - T° 131 F° 132</div>
+    </div>
+    <div class="footer-col">
+      <h4>Navegación</h4>
+      <a href="#inicio">Inicio</a>
+      <a href="#areas">Áreas de práctica</a>
+      <a href="#proceso">El proceso</a>
+      <a href="#sobre-mi">El estudio</a>
+      <a href="#contacto">Contacto</a>
+    </div>
+    <div class="footer-col">
+      <h4>Contacto</h4>
+      <a href="tel:+543795068130">+54 9 3795 068130</a>
+      <a href="mailto:fabricioferrazzi@yahoo.com.ar">fabricioferrazzi@yahoo.com.ar</a>
+      <p>Agustín P. Justo N° 2524<br>Corrientes Capital</p>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <p>© 2026 Dr. Fabricio Ferrazzi · Todos los derechos reservados</p>
+    <p class="footer-credito" style="margin-top: 8px;">
+      Sitio desarrollado por <a href="https://syntaxis-web.onrender.com" target="_blank">Syntaxis Web</a>
+    </p>
+  </div>
+</footer>
+
+<!-- WHATSAPP FLOTANTE -->
+<a href="https://wa.me/543795068130" target="_blank" class="whatsapp-flotante" aria-label="WhatsApp">
+  <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12c0 1.85.5 3.58 1.36 5.07L2 22l5.06-1.33A9.94 9.94 0 0 0 12 22c5.52 0 10-4.48 10-10S17.52 2 12 2zm5.2 14.2c-.22.62-1.28 1.19-1.77 1.24-.45.05-.99.07-1.6-.1-.37-.1-.84-.27-1.45-.53-2.55-1.1-4.2-3.67-4.33-3.84-.13-.17-1.03-1.37-1.03-2.6 0-1.24.65-1.85.88-2.1.22-.24.5-.3.66-.3.17 0 .33 0 .48.01.15.01.36-.06.56.43.22.53.73 1.83.8 1.96.06.13.1.28.02.45-.08.17-.13.28-.25.43-.13.15-.27.34-.38.46-.13.13-.26.27-.11.53.15.26.66 1.09 1.42 1.77.98.87 1.8 1.14 2.06 1.27.26.13.41.11.56-.06.15-.17.65-.76.82-1.02.17-.26.34-.22.56-.13.22.08 1.41.66 1.65.78.24.13.4.19.46.3.06.11.06.62-.16 1.24z"/></svg>
+</a>
+
+<script>
+/* HEADER */
+const header = document.getElementById('header');
+window.addEventListener('scroll', () => {
+  header.classList.toggle('header-solido', window.scrollY > 40);
+});
+
+/* MENÚ MÓVIL */
+const navToggle = document.getElementById('navToggle');
+const navMenu = document.getElementById('navMenu');
+navToggle.addEventListener('click', () => navMenu.classList.toggle('abierto'));
+navMenu.querySelectorAll('a').forEach(link => {
+  link.addEventListener('click', () => navMenu.classList.remove('abierto'));
+});
+
+/* ANIMACIÓN SCROLL */
+const observador = new IntersectionObserver((entradas) => {
+  entradas.forEach(entrada => {
+    if (entrada.isIntersecting) {
+      entrada.target.classList.add('visible');
+      observador.unobserve(entrada.target);
+    }
+  });
+}, { threshold: 0.15 });
+document.querySelectorAll('.reveal').forEach(el => observador.observe(el));
+
+/* FORMULARIO - MENSAJE DE ÉXITO */
+const formulario = document.querySelector('.formulario');
+if (formulario) {
+  formulario.addEventListener('submit', function(e) {
+    const boton = formulario.querySelector('button[type="submit"]');
+    const original = boton.textContent;
+    boton.textContent = 'Enviando...';
+    boton.disabled = true;
+    setTimeout(() => {
+      boton.textContent = original;
+      boton.disabled = false;
+    }, 3000);
+  });
+}
+</script>
 
 </body>
 </html>
